@@ -1,0 +1,32 @@
+name: Run Robot Framework Tests
+on:
+  push:
+  
+    branches:
+      - master
+      
+jobs:
+    Run_Sample_Robot_Test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: checkout code to default container
+          uses: actions/checkout@v2.4.0
+          
+        - name: Create folder for reports
+          run: mkdir reports
+          
+                
+        - name: Run Robot Sample Tests in DOCKER container
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
+              
+        - name: Upload test reports
+          uses: actions/upload-artifact@v2.2.4
+          with:
+           name: reports
+        # set path to Robot Framework results reports
+           path: ${{ github.workspace }}/reports
