@@ -16,8 +16,8 @@ GET_SPARTAN_INFO
     #log to console    ${response.headers}
 
     #Validations
-   ${status_code}=    convert to string   ${response.status_code}
-   should be equal     ${status_code}   200
+   #${status_code}=    convert to string   ${response.status_code}
+   #should be equal     ${status_code}   200
 
-   ${body}=    convert to string    ${response.content}
-   should contain     ${body}   Meade
+   #${body}=    convert to string    ${response.content}
+   #should contain     ${body}   Meade
