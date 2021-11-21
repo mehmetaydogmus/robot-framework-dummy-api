@@ -3,7 +3,7 @@ on:
   push:
   
     branches:
-      - master
+      - main
       
 jobs:
     Run_Sample_Robot_Test:
@@ -20,7 +20,7 @@ jobs:
           run: |
             docker run \
               -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/TestCases:/opt/robotframework/tests:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
               --user $(id -u):$(id -g) \
               ppodgorsek/robot-framework:latest
               
